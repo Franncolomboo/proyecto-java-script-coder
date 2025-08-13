@@ -1,0 +1,65 @@
+{
+  "name": "sass",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "sass ./sass/style.scss ./style.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "sass": "^1.90.0"
+  },
+  "dependencies": {
+    "anymatch": "^3.1.3",
+    "axios": "^1.11.0",
+    "balanced-match": "^1.0.2",
+    "binary-extensions": "^2.3.0",
+    "brace-expansion": "^1.1.12",
+    "braces": "^3.0.3",
+    "chokidar": "^3.6.0",
+    "concat-map": "^0.0.1",
+    "debug": "^4.4.1",
+    "detect-libc": "^1.0.3",
+    "fill-range": "^7.1.1",
+    "glob-parent": "^5.1.2",
+    "has-flag": "^3.0.0",
+    "ignore-by-default": "^1.0.1",
+    "immutable": "^5.1.3",
+    "is-binary-path": "^2.1.0",
+    "is-extglob": "^2.1.1",
+    "is-glob": "^4.0.3",
+    "is-number": "^7.0.0",
+    "jest": "^30.0.5",
+    "micromatch": "^4.0.8",
+    "minimatch": "^3.1.2",
+    "moment": "^2.30.1",
+    "ms": "^2.1.3",
+    "node-addon-api": "^7.1.1",
+    "normalize-path": "^3.0.0",
+    "picomatch": "^2.3.1",
+    "pstree.remy": "^1.1.8",
+    "readdirp": "^3.6.0",
+    "semver": "^7.7.2",
+    "simple-update-notifier": "^2.0.0",
+    "source-map-js": "^1.2.1",
+    "supports-color": "^5.5.0",
+    "to-regex-range": "^5.0.1",
+    "touch": "^3.1.1",
+    "undefsafe": "^2.0.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Franncolomboo/proyecto-java-script-coder.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Franncolomboo/proyecto-java-script-coder/issues"
+  },
+  "homepage": "https://github.com/Franncolomboo/proyecto-java-script-coder#readme"
+}
