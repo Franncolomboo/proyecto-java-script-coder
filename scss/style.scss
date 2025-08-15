@@ -1,6 +1,4 @@
 @import '_reset';
-@import '_base';
-@import '_layout';
 
 body{
     background-color: gray;
@@ -11,12 +9,21 @@ body{
     justify-self: start;
     padding-left: 0.4rem;
     font-size: 1.6rem;
+    font-family: 'Poppins',sans-serif;
+    font-weight: 600;
+    align-self: center;
+    margin: 0;
 }
 
-.logo{
+.logo {
     width: 2rem;
     grid-area: logo;
+    transition: transform 0.3s;
+    &:hover {
+        transform: scale(1.2); 
+    }
 }
+
 
 .header-container{
     background-color: white;
@@ -43,11 +50,41 @@ body{
     margin: 0;
     padding: 0;
     a{
+        position: relative;
+        font-family: 'Poppins',sans-serif;
         color: black;
         text-decoration: none;
+        letter-spacing: 0.5px;
+        padding: 0px 4px;
     }
+}
+
+// Animacion links
+a:after{
+    content: "";
+    position: absolute;
+    background-color: rgb(255, 51, 0);
+    height: 3px;
+    width: 0;
+    left:0;
+    bottom: -5px;
+    transition: 0.3s;
+}
+
+a:hover:after{
+    width: 100%;
 }
 
 .row{
     width: 100%;
+}
+
+.hero-carousel{
+    max-width: 100%;
+    overflow: hidden;
+    height: 60vh;
+    img{
+        height: 80vh;
+        object-fit: cover;
+    }
 }
