@@ -6,3 +6,48 @@ body{
     background-color: gray;
 }
 
+.titulo{
+    grid-area: titulo;
+    justify-self: start;
+    padding-left: 0.4rem;
+    font-size: 1.6rem;
+}
+
+.logo{
+    width: 2rem;
+    grid-area: logo;
+}
+
+.header-container{
+    background-color: white;
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 
+    "logo titulo nav";
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.4rem;
+}
+
+.nav-bar{
+    align-items: center;
+}
+
+.nav-bar ul {
+    grid-area: nav;
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    a{
+        color: black;
+        text-decoration: none;
+    }
+}
+
+.row{
+    width: 100%;
+}
