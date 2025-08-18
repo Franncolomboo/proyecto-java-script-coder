@@ -1,0 +1,13 @@
+.row{
+    width: 100%;
+}
+
+.hero-carousel{
+    max-width: 100%;
+    overflow: hidden;
+    height: 60vh;
+    img{
+        height: 50vh;
+        object-fit: cover;
+    }
+}

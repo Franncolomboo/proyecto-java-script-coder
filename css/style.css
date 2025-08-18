@@ -86,7 +86,7 @@ a:hover:after {
   height: 60vh;
 }
 .hero-carousel img {
-  height: 80vh;
+  height: 50vh;
   object-fit: cover;
 }
 
