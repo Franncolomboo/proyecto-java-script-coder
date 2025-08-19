@@ -1,0 +1,11 @@
+.py-5{
+    background-color: $bg-footer;
+    padding: 0.625rem;
+    color: $color-font-footer;
+    a{
+        color: $color-font-footer;
+        &:hover{
+            color: $color-boton;
+        }
+    }
+}

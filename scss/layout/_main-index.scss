@@ -1,0 +1,11 @@
+.section-destacados{
+    @include secciones;
+}
+
+.section-auriculares {
+    @include secciones;
+}
+
+.section-products {
+    @include productos;
+}

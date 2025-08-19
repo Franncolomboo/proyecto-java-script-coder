@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: gray;
+  background-color: white;
 }
 
 .titulo {
@@ -41,6 +41,7 @@ body {
 
 .nav-bar {
   align-items: center;
+  padding: 0.625rem;
 }
 
 .nav-bar ul {
@@ -60,8 +61,7 @@ body {
   letter-spacing: 0.5px;
   padding: 0px 4px;
 }
-
-a:after {
+.nav-bar ul a:after {
   content: "";
   position: absolute;
   background-color: rgb(255, 51, 0);
@@ -71,9 +71,38 @@ a:after {
   bottom: -5px;
   transition: 0.3s;
 }
-
-a:hover:after {
+.nav-bar ul a:hover:after {
   width: 100%;
+}
+
+.py-5 {
+  background-color: #111;
+  padding: 0.625rem;
+  color: white;
+}
+.py-5 a {
+  color: white;
+}
+.py-5 a:hover {
+  color: #ff3300;
+}
+
+.section-destacados {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-auriculares {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.section-products {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.625rem;
 }
 
 .row {
@@ -88,6 +117,68 @@ a:hover:after {
 .hero-carousel img {
   height: 50vh;
   object-fit: cover;
+}
+
+.card-jbl {
+  width: 15.625rem;
+  height: 28.125rem;
+  margin: 0.625rem;
+  background-color: white;
+  justify-items: center;
+  padding: 0.625rem;
+  flex: 0 0 auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.card-jbl img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background-color: white;
+}
+.card-jbl:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+  transform: scale(1.01);
+}
+
+.body-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.body-card h5 {
+  font-weight: 700;
+  justify-content: center;
+}
+.body-card p {
+  align-self: flex-start;
+  color: grey;
+}
+
+.precios {
+  display: flex;
+  gap: 0.3125rem;
+}
+.precios .precio-anterior {
+  text-decoration: line-through;
+  color: grey;
+}
+.precios .nuevo-precio {
+  font-weight: bold;
+  color: #ff3300;
+}
+
+.boton-card {
+  background-color: #ff3300;
+  border-radius: 1.25rem;
+  border: none;
+  border-color: #ff3300;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px 60px 10px 60px;
+  justify-self: center;
+  font-weight: 700;
 }
 
 /*# sourceMappingURL=style.css.map */

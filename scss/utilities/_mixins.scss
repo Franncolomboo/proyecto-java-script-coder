@@ -1,0 +1,31 @@
+@mixin productos {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.625rem;
+}
+
+@mixin tarjeta {
+    width: 15.625rem;
+    height: 28.125rem;
+    margin: 0.625rem;
+    background-color: $bg-tarjeta;
+    justify-items: center;
+    padding: 0.625rem;
+}
+
+@mixin boton {
+    background-color: $color-boton;
+    border-radius: 1.25rem;
+    border: none;
+    border-color: $color-boton;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px 60px 10px 60px;
+}
+
+@mixin secciones {
+    text-align: center;
+    margin-bottom: 2rem;
+}

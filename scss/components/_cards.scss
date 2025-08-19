@@ -1,0 +1,44 @@
+.card-jbl{
+    @include tarjeta;
+    flex: 0 0 auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    img{
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        background-color: $color-fondo-img;
+    }
+    &:hover{
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+        transform: scale(1.01);
+    }
+}
+
+.body-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    h5{
+        font-weight: 700;
+        justify-content : center;
+    }
+    p{
+        align-self: flex-start;
+        color: grey;
+    }
+}
+
+.precios{
+    display: flex;
+    gap: 0.3125rem;
+    .precio-anterior{
+        text-decoration: line-through;
+        color: grey;
+    }
+    .nuevo-precio{
+        font-weight: bold;
+        color: $color-boton;
+    }
+}
