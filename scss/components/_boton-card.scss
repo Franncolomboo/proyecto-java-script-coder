@@ -2,4 +2,10 @@
     @include boton;
     justify-self: center;
     font-weight: 700;
+    &:hover{
+        color: black;
+        background-color: white;
+        border: 3px solid $color-boton;
+        transition: all 0.3s ease-in-out;
+    }
 }

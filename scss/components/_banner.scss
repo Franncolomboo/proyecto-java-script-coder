@@ -1,0 +1,12 @@
+.banner-container{
+    width: 100%;
+    height: 40vh;
+    img{
+        object-fit: cover;
+        overflow: hidden;
+        width: 100%;
+    }
+    &:hover{
+        transform: scale(1.005);
+    }
+}
