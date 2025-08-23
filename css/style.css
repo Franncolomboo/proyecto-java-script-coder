@@ -75,6 +75,41 @@ body {
   width: 100%;
 }
 
+.nav-hamb {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .nav-bar ul {
+    gap: 0.3125rem;
+  }
+}
+@media (max-width: 562px) {
+  .nav-hamb {
+    display: block;
+  }
+  .nav-bar2 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .nav-bar2 ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .nav-bar2 ul a {
+    position: relative;
+    font-family: "Poppins", sans-serif;
+    color: black;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    padding: 0px 4px;
+  }
+  .nav-bar ul {
+    display: none;
+  }
+}
 .py-5 {
   background-color: #111;
   padding: 0.625rem;
