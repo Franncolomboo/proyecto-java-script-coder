@@ -1,10 +1,9 @@
 // main.js
 
-const API_URL = './productos.json'; // Asegúrate de que esta ruta sea correcta
+const API_URL = './productos.json'; 
 
-// ===========================================
 // FUNCIÓN PRINCIPAL: Fetch y Filtrado
-// ===========================================
+
 async function obtenerProductosPorCategoria(categoriaDeseada) {
     try {
         const response = await fetch(API_URL);
@@ -26,9 +25,7 @@ async function obtenerProductosPorCategoria(categoriaDeseada) {
     }
 }
 
-// ===========================================
-// FUNCIÓN DE RENDERIZADO (Adaptada a tu HTML)
-// ===========================================
+
 function renderizarProductos(productos, elementoContenedorId) {
     const contenedor = document.getElementById(elementoContenedorId);
     if (!contenedor) return;
@@ -45,17 +42,16 @@ function renderizarProductos(productos, elementoContenedorId) {
                     <p class="precio-anterior">$${precioNormal}</p>
                     <p class="nuevo-precio">$${precioOferta}</p>
                 </div>
-              `
+                `
             : `
                 <div class="precios">
                     <p class="nuevo-precio">$${precioNormal}</p>
                 </div>
-              `;
-              
-        // Etiqueta de Envío Gratis (Solo se renderiza si es true)
+                `;
+        // Etiqueta de Envío Gratis 
         const envioGratisHTML = producto['envio-gratis']
             ? `<div class="envio-gratis">🚀 Envío GRATIS</div>`
-            : ''; // Si es false, no se renderiza nada.
+            : ''; // Si es false , no muestra nada
 
         // Retorna la estructura HTML completa
         return `
