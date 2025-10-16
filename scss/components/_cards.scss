@@ -38,8 +38,7 @@
         color: grey;
     }
     .nuevo-precio{
-        font-weight: bold;
-        color: $color-boton;
+        @include oferta;
     }
 }
 
