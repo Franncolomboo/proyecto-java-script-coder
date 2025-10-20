@@ -84,11 +84,11 @@
             "nombre": "JBL Go Essential",
             "descripcion": "Altavoz de fiesta con 800W RMS y luces dinámicas.",
             "precio": 699000,
-            "imagen": "./assets/img/jbl-goessential.jpg",
+            "imagen": "./assets/img/jbl-go-essential-black.jpg",
             "oferta": false,
             "precio_oferta": null,
             "envio-gratis": false,
-            "categoria": "Parlantes"
+            "categoria": "Ofertas"
         },
         {
             "nombre": "JBL Clip 5",
@@ -468,7 +468,7 @@
             "oferta": true,
             "precio_oferta": 39999,
             "envio-gratis": false,
-            "categoria": "Auriculares"
+            "categoria": "Ofertas"
         },
         {
             "nombre": "JBL Endurance Run 2 Wireless",
@@ -488,7 +488,7 @@
             "oferta": true,
             "precio_oferta": 675999,
             "envio-gratis": false,
-            "categoria": "Auriculares"
+            "categoria": "Ofertas"
         },
         {
             "nombre": "JBL Quantum 100",
@@ -948,7 +948,7 @@
             "oferta": false,
             "precio_oferta": null,
             "envio-gratis": false,
-            "categoria": "Hogar"
+            "categoria": "Ofertas"
         },
         {
             "nombre": "MA9100HP",

@@ -1,9 +1,9 @@
 // main.js
 
-const API_URL = './productos.json'; 
+const API_URL = '../data/catalogo.json'; 
 
 // FUNCIÓN PRINCIPAL: Fetch y Filtrado
-
+    
 async function obtenerProductosPorCategoria(categoriaDeseada) {
     try {
         const response = await fetch(API_URL);
@@ -69,3 +69,50 @@ function renderizarProductos(productos, elementoContenedorId) {
         `;
     }).join('');
 }
+/**
+ * Función que carga y muestra productos de una categoría específica en un contenedor.
+ * @param {string} categoria - La categoría a filtrar (ej: 'Auriculares', 'Parlantes', 'Ofertas').
+ * @param {string} contenedorId - El ID del elemento HTML donde se muestran los productos.
+ */
+async function inicializarPagina(categoria, contenedorId) {
+    // 1. Obtener los productos filtrados por la categoría
+    const productosFiltrados = await obtenerProductosPorCategoria(categoria);
+
+    // 2. Renderizar los productos en el contenedor
+    renderizarProductos(productosFiltrados, contenedorId);
+}
+
+
+const ID_CONTENEDOR_DESTACADOS = 'contenedor-destacados';
+const ID_CONTENEDOR_AURICULARES = 'contenedor-ofertas';
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Lógica para el INDEX.HTML (que necesita cargar múltiples categorías)
+    // ---------------------------------------------------------------------
+
+    const contenedorDestacados = document.getElementById(ID_CONTENEDOR_DESTACADOS);
+    const contenedorAuriculares = document.getElementById(ID_CONTENEDOR_AURICULARES);
+
+    if (contenedorDestacados && contenedorAuriculares) {
+        // Estamos en el index.html (o una página que necesita ambas secciones)
+        
+        // Cargar la primera sección: Destacados/Ofertas
+        inicializarPagina('Ofertas', ID_CONTENEDOR_DESTACADOS); 
+        
+        // Cargar la segunda sección: Auriculares
+        inicializarPagina('Auriculares', ID_CONTENEDOR_AURICULARES);
+        
+    } else {
+        // Lógica para las páginas de categorías únicas (Auriculares.html, Parlantes.html, etc.)
+        // ------------------------------------------------------------------------------------
+        
+        // Se mantiene la lógica del atributo data-categoria para las páginas de catálogo
+        const categoriaUnica = document.body.getAttribute('data-categoria');
+        const contenedorUnicoId = 'productos-contenedor'; // Asume que este es el ID en tus otras páginas
+
+        if (categoriaUnica && document.getElementById(contenedorUnicoId)) {
+            console.log(`Cargando productos para la categoría: ${categoriaUnica}`);
+            inicializarPagina(categoriaUnica, contenedorUnicoId);
+        }
+    }
+});
