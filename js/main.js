@@ -31,7 +31,6 @@ function renderizarProductos(productos, elementoContenedorId) {
     if (!contenedor) return;
 
     contenedor.innerHTML = productos.map(producto => {
-        // Formateo de precios (usando 'es-ES' como ejemplo)
         const precioNormal = producto.precio.toLocaleString('es-ES');
         const precioOferta = producto.precio_oferta ? producto.precio_oferta.toLocaleString('es-ES') : null;
         
@@ -50,7 +49,7 @@ function renderizarProductos(productos, elementoContenedorId) {
                 `;
         // Etiqueta de Envío Gratis 
         const envioGratisHTML = producto['envio-gratis']
-            ? `<div class="envio-gratis">🚀 Envío GRATIS</div>`
+            ? `<div class="envio-gratis"> Envío GRATIS🚀</div>`
             : ''; // Si es false , no muestra nada
 
         // Retorna la estructura HTML completa
@@ -59,9 +58,10 @@ function renderizarProductos(productos, elementoContenedorId) {
                 <img src="${producto.imagen}" alt="${producto.nombre}">
                 ${envioGratisHTML}
                 <div class="body-card">
-                    <span class="categoria">${producto.categoria}</span>
+                    <div>
                     <h5>${producto.nombre}</h5>
                     <p>${producto.descripcion}</p>
+                    </div>
                     ${preciosHTML}
                     <button class="boton-card">Agregar</button>
                 </div>

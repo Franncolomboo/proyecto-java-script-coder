@@ -3,9 +3,10 @@
     flex: 0 0 auto;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     img{
-        width: 100%;
+        max-width: 70%;
         height: auto;
-        object-fit: contain;
+        object-fit: cover;
+        overflow: hidden;
         background-color: $color-fondo-img;
     }
     &:hover{
@@ -22,12 +23,22 @@
     align-items: center;
     h5{
         font-weight: 700;
+        text-align: center;
         justify-content : center;
     }
     p{
         align-self: flex-start;
         color: grey;
+        flex-grow: 1;
     }
+}
+
+.envio-gratis{
+    color: rgb(47, 255, 57);
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-top: 0.3125rem;
+
 }
 
 .precios{
