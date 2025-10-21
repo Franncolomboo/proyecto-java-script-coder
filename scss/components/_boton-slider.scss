@@ -1,0 +1,22 @@
+.scroll-top-container {
+    display: flex; 
+    justify-content: center; 
+    padding: 20px 0; 
+    width: 100%; 
+}
+
+.boton-slider {
+    @include boton;
+    background-color: $color-boton-slider;
+    display: inline-block; 
+    text-decoration: none;
+    font-weight: 700;
+    max-width: 250px; 
+    text-align: center;
+    &:hover{
+        color: black;
+        background-color: white;
+        border: 3px solid $color-boton-slider;
+        transition: all 0.3s ease-in-out;
+    } 
+}
