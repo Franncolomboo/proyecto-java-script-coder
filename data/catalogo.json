@@ -1,6 +1,7 @@
 {
     "productos": [
         {
+            "id":1,
             "nombre": "JBL Charge 5",
             "descripcion": "Potente altavoz portátil con sonido envolvente.",
             "precio": 250000,
@@ -11,6 +12,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":2,
             "nombre": "JBL Charge 6",
             "descripcion": "Altavoz de gran potencia con conectividad WiFi y sonido JBL Signature.",
             "precio": 320000,
@@ -21,6 +23,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":3,
             "nombre": "JBL Flip 7",
             "descripcion": "Sistema de audio JBL para el hogar o automóvil con alta fidelidad.",
             "precio": 250000,
@@ -31,6 +34,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":4,
             "nombre": "JBL Go 4",
             "descripcion": "Altavoz para fiestas con iluminación LED y sonido potente.",
             "precio": 250000,
@@ -41,6 +45,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":5,
             "nombre": "JBL BoomBox 3",
             "descripcion": "Altavoz portátil resistente al agua con sonido JBL Original Pro.",
             "precio": 159000,
@@ -51,6 +56,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":6,
             "nombre": "JBL Horizon 3 con FM",
             "descripcion": "Altavoz portátil con batería de larga duración y sonido potente.",
             "precio": 279000,
@@ -61,6 +67,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":7,
             "nombre": "JBL PartyBox Club 120",
             "descripcion": "Mini parlante Bluetooth ultracompacto con sonido sorprendente.",
             "precio": 69000,
@@ -71,6 +78,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":8,
             "nombre": "JBL BoomBox 3 Wi-Fi",
             "descripcion": "Altavoz compacto con clip integrado y resistencia IP67.",
             "precio": 79900,
@@ -81,6 +89,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":9,
             "nombre": "JBL Go Essential",
             "descripcion": "Altavoz de fiesta con 800W RMS y luces dinámicas.",
             "precio": 699000,
@@ -91,6 +100,7 @@
             "categoria": "Ofertas"
         },
         {
+            "id":10,
             "nombre": "JBL Clip 5",
             "descripcion": "Altavoz de fiesta con graves profundos y efectos de luces.",
             "precio": 379000,
@@ -101,6 +111,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":11,
             "nombre": "JBL PartyBox Stage320",
             "descripcion": "Auriculares inalámbricos con 40 horas de batería.",
             "precio": 79900,
@@ -111,6 +122,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":12,
             "nombre": "JBL Grip",
             "descripcion": "Auriculares True Wireless con graves profundos y resistencia al agua.",
             "precio": 89000,
@@ -121,6 +133,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":13,
             "nombre": "JBL PartyBox Wireless Mic",
             "descripcion": "Auriculares over-ear con cancelación de ruido adaptativa.",
             "precio": 199000,
@@ -131,6 +144,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":14,
             "nombre": "JBL PartyLight Beam",
             "descripcion": "Auriculares gamer con sonido surround JBL QuantumSURROUND.",
             "precio": 159000,
@@ -141,6 +155,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":15,
             "nombre": "JBL Authentics 300",
             "descripcion": "Auriculares gamer con micrófono desmontable y sonido envolvente.",
             "precio": 69900,
@@ -150,7 +165,8 @@
             "envio-gratis": true,
             "categoria": "Parlantes"
         },
-        {
+        {   
+            "id":16,
             "nombre": "JBL PartyBox 520",
             "descripcion": "Headset gamer con seguimiento de cabeza y sonido 3D inmersivo.",
             "precio": 289000,
@@ -161,6 +177,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":17,
             "nombre": "JBL Pulse 5",
             "descripcion": "Micrófono profesional para gaming y streaming con doble condensador.",
             "precio": 149000,
@@ -171,6 +188,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":18,
             "nombre": "JBL Authentics 500",
             "descripcion": "Barra de sonido con subwoofer inalámbrico y Dolby Digital.",
             "precio": 359000,
@@ -181,6 +199,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":19,
             "nombre": "JBL PartyLight Stick",
             "descripcion": "Sistema de sonido 9.1 canales con altavoces desmontables.",
             "precio": 599000,
@@ -191,6 +210,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":20,
             "nombre": "JBL Battery 400",
             "descripcion": "Amplificador de 4 canales para car audio con 90W RMS por canal.",
             "precio": 249000,
@@ -201,6 +221,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":21,
             "nombre": "JBL Battery 200",
             "descripcion": "Amplificador monoblock Class D para subwoofers.",
             "precio": 219000,
@@ -211,6 +232,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":22,
             "nombre": "JBL PartyBox Encore Essential 2",
             "descripcion": "Caja de subwoofer pasivo de 12 pulgadas, graves potentes.",
             "precio": 199000,
@@ -221,6 +243,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id":23,
             "nombre": "JBL PartyBox Encore 2",
             "descripcion": "Altavoz activo profesional de 15” con Bluetooth y DSP integrado.",
             "precio": 759000,
@@ -231,6 +254,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id": 24,
             "nombre": "JBL PartyBox 110",
             "descripcion": "Subwoofer profesional de 15” con 2000W RMS.",
             "precio": 999000,
@@ -241,6 +265,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id": 25,
             "nombre": "JBL PartyBox Ultimate",
             "descripcion": "Auriculares premium con cancelación de ruido adaptativa.",
             "precio": 349000,
@@ -251,6 +276,7 @@
             "categoria": "Parlantes"
         },
         {
+            "id": 26,
             "nombre": "JBL Tune 770NC",
             "descripcion": "Auriculares inalámbricos over-ear con cancelación de ruido adaptativa y sonido JBL Pure Bass.",
             "precio": 182849,
@@ -261,6 +287,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 27,
             "nombre": "JBL Wave Beam 2",
             "descripcion": "Auriculares True Wireless con cancelación de ruido, sonido JBL Pure Bass y tecnología Smart Ambient.",
             "precio": 129999,
@@ -271,6 +298,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 28,
             "nombre": "JBL Live 770NC",
             "descripcion": "Auriculares inalámbricos circumaurales con cancelación de ruido True Adaptive y sonido envolvente.",
             "precio": 285999,
@@ -281,6 +309,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 29,
             "nombre": "JBL Wave Buds 2",
             "descripcion": "Auriculares True Wireless con cancelación de ruido y tecnología Smart Ambient.",
             "precio": 123999,
@@ -291,16 +320,18 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 30,
             "nombre": "JBL Wave Buds",
             "descripcion": "Auriculares de botón True Wireless con sonido JBL Pure Bass.",
             "precio": 112999,
-            "imagen": "../assets/img/jbl-wave-buds.jpg",
+            "imagen": "../assets/assets/img/jbl-wave-buds.jpg",
             "oferta": true,
             "precio_oferta": 73999,
             "envio-gratis": false,
             "categoria": "Auriculares"
         },
         {
+            "id": 31,
             "nombre": "JBL Tune 720BT",
             "descripcion": "Auriculares inalámbricos circumaurales con sonido JBL Pure Bass.",
             "precio": 129999,
@@ -311,6 +342,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 32,
             "nombre": "JBL Tune Flex",
             "descripcion": "Auriculares True Wireless con cancelación de ruido activa y micrófonos duales.",
             "precio": 184999,
@@ -321,6 +353,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 33,
             "nombre": "JBL Tune Flex 2",
             "descripcion": "Auriculares True Wireless con cancelación de ruido, sonido JBL Spatial y tecnología Smart Ambient.",
             "precio": 206999,
@@ -331,6 +364,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 34,
             "nombre": "JBL Endurance Peak 3",
             "descripcion": "Auriculares deportivos True Wireless resistentes al polvo y al agua con diseño ergonómico.",
             "precio": 297499,
@@ -341,6 +375,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 35,
             "nombre": "JBL Tune Buds 2",
             "descripcion": "Auriculares True Wireless con cancelación de ruido y sonido JBL Spatial.",
             "precio": 184999,
@@ -351,6 +386,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 36,
             "nombre": "JBL Tune 520BT",
             "descripcion": "Auriculares inalámbricos supraaurales con sonido JBL Pure Bass.",
             "precio": 101999,
@@ -361,6 +397,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 37,
             "nombre": "JBL Tour One M3",
             "descripcion": "Auriculares inalámbricos premium con cancelación de ruido adaptativa y audio de alta resolución.",
             "precio": 700999,
@@ -371,6 +408,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 38,
             "nombre": "JBL Wave Flex",
             "descripcion": "Auriculares de botón True Wireless con diseño ergonómico y sonido JBL Pure Bass.",
             "precio": 129999,
@@ -381,6 +419,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 39,
             "nombre": "JBL Endurance Race 2",
             "descripcion": "Auriculares deportivos True Wireless resistentes al agua y al polvo, con ajuste seguro.",
             "precio": 176999,
@@ -391,6 +430,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 40,
             "nombre": "JBL Live Pro 2 TWS",
             "descripcion": "Auriculares True Wireless con cancelación de ruido activa y sonido JBL Signature.",
             "precio": 299999,
@@ -401,6 +441,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 41,
             "nombre": "JBL Endurance Race TWS",
             "descripcion": "Auriculares deportivos impermeables True Wireless con diseño resistente y ajuste cómodo.",
             "precio": 158999,
@@ -411,6 +452,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 42,
             "nombre": "JBL Tour Pro 2",
             "descripcion": "Auriculares True Wireless con cancelación de ruido y estuche Smart Charging Case.",
             "precio": 459999,
@@ -421,6 +463,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 43,
             "nombre": "JBL Quantum 100M2",
             "descripcion": "Auriculares gamer con cable, micrófono desmontable y almohadillas de espuma viscoelástica.",
             "precio": 84999,
@@ -431,6 +474,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 44,
             "nombre": "JBL Live Beam 3",
             "descripcion": "Auriculares True Wireless con cancelación de ruido y estuche Smart Charging Case™.",
             "precio": 390999,
@@ -441,6 +485,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 45,
             "nombre": "JBL Tour Pro 3",
             "descripcion": "Auriculares True Wireless con cancelación de ruido adaptativa y tecnología JBL Spatial 360.",
             "precio": 677999,
@@ -451,6 +496,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 46,
             "nombre": "JBL Tune 310C USB",
             "descripcion": "Auriculares con cable y conector USB-C, sonido JBL Pure Bass y micrófono integrado.",
             "precio": 45999,
@@ -461,6 +507,7 @@
             "categoria": "Ofertas"
         },
         {
+            "id": 47,
             "nombre": "JBL Endurance Run 2 Wireless",
             "descripcion": "Auriculares deportivos inalámbricos resistentes al agua con ajuste seguro.",
             "precio": 97999,
@@ -471,6 +518,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 48,
             "nombre": "JBL Tour One M3 Smart Tx",
             "descripcion": "Auriculares premium con cancelación de ruido, audio de alta resolución y transmisor Smart Tx.",
             "precio": 789999,
@@ -481,6 +529,7 @@
             "categoria": "Ofertas"
         },
         {
+            "id": 49,
             "nombre": "JBL Quantum 100",
             "descripcion": "Auriculares gamer con cable, micrófono abatible y sonido JBL QuantumSOUND.",
             "precio": 80000,
@@ -491,6 +540,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 50,
             "nombre": "JBL Tune 520C USB-C",
             "descripcion": "Auriculares con cable USB-C, sonido JBL Pure Bass y ecualización con tres preajustes.",
             "precio": 101999,
@@ -501,6 +551,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 51,
             "nombre": "JBL Quantum 350 Wireless",
             "descripcion": "Auriculares gamer inalámbricos con micrófono desmontable y batería de larga duración.",
             "precio": 229999,
@@ -511,6 +562,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 52,
             "nombre": "JBL Quantum 610 Wireless",
             "descripcion": "Auriculares gamer inalámbricos over-ear con sonido envolvente JBL QuantumSURROUND.",
             "precio": 399999,
@@ -521,6 +573,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 53,
             "nombre": "JBL Quantum 50",
             "descripcion": "Auriculares gamer con cable, control de volumen y micrófono integrado.",
             "precio": 49999,
@@ -531,6 +584,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 54,
             "nombre": "JBL Quantum TWS",
             "descripcion": "Auriculares True Wireless para gaming con cancelación de ruido.",
             "precio": 319999,
@@ -541,6 +595,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 55,
             "nombre": "JBL Live Buds 3",
             "descripcion": "Auriculares True Wireless tipo botón con cancelación de ruido y Smart Charging Case™.",
             "precio": 369999,
@@ -551,6 +606,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 56,
             "nombre": "JBL Tune 110",
             "descripcion": "Auriculares intraaurales con cable y sonido JBL Pure Bass.",
             "precio": 21499,
@@ -561,6 +617,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 57,
             "nombre": "JBL Quantum 100N",
             "descripcion": "Auriculares gamer con cable, micrófono desmontable y sonido JBL QuantumSOUND Signature.",
             "precio": 84999,
@@ -571,6 +628,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 58,
             "nombre": "JBL Quantum 910 Wireless",
             "descripcion": "Auriculares gamer inalámbricos con seguimiento de cabeza y cancelación activa de ruido.",
             "precio": 699999,
@@ -581,6 +639,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 59,
             "nombre": "JBL Quantum 100P Console",
             "descripcion": "Auriculares gamer con cable y micrófono desmontable para consolas.",
             "precio": 84999,
@@ -591,6 +650,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 60,
             "nombre": "JBL Quantum 360P Console Wireless",
             "descripcion": "Auriculares inalámbricos para consolas con micrófono desmontable.",
             "precio": 249999,
@@ -601,6 +661,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 61,
             "nombre": "JBL Quantum TWS Air",
             "descripcion": "Auriculares True Wireless para gaming con conectividad de baja latencia.",
             "precio": 229999,
@@ -611,6 +672,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 62,
             "nombre": "JBL Quantum 250",
             "descripcion": "Auriculares gamer con cable multiplataforma y compatibilidad con JBL QuantumENGINE.",
             "precio": 129999,
@@ -621,6 +683,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 63,
             "nombre": "JBL Quantum 50C",
             "descripcion": "Auriculares intraaurales con cable USB-C y sonido JBL Pure Bass.",
             "precio": 69999,
@@ -631,6 +694,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 64,
             "nombre": "JBL C50HI",
             "descripcion": "Auriculares intraaurales con micrófono, ligeros y cómodos.",
             "precio": 16999,
@@ -641,6 +705,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 65,
             "nombre": "JBL Tune Buds",
             "descripcion": "Auriculares True Wireless con cancelación de ruido activa y sonido JBL Pure Bass.",
             "precio": 184999,
@@ -651,6 +716,7 @@
             "categoria": "Auriculares"
         },
         {
+            "id": 66,
             "nombre": "JBL Quantum 100M2",
             "descripcion": "Auriculares gamer con cable, micrófono desmontable y almohadillas de espuma viscoelástica.",
             "precio": 84999,
@@ -661,6 +727,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 67,
             "nombre": "JBL Quantum TWS",
             "descripcion": "Auriculares True Wireless para gaming con cancelación de ruido.",
             "precio": 319999,
@@ -671,6 +738,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 68,
             "nombre": "JBL Quantum Stream",
             "descripcion": "Micrófono USB premium doble para streaming, grabación y juegos.",
             "precio": 199999,
@@ -681,6 +749,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 69,
             "nombre": "JBL Quantum 100",
             "descripcion": "Auriculares gamer con cable y micrófono abatible.",
             "precio": 80000,
@@ -691,6 +760,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 70,
             "nombre": "JBL Quantum 350 Wireless",
             "descripcion": "Auriculares inalámbricos para gaming con micrófono desmontable.",
             "precio": 229999,
@@ -701,6 +771,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 71,
             "nombre": "JBL Quantum 100P Console",
             "descripcion": "Auriculares gamer con cable y micrófono desmontable para consolas.",
             "precio": 84999,
@@ -711,6 +782,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 72,
             "nombre": "JBL Quantum Stream Talk",
             "descripcion": "Micrófono USB para streaming, grabación y gaming.",
             "precio": 119999,
@@ -721,6 +793,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 73,
             "nombre": "JBL Quantum 50C",
             "descripcion": "Auriculares intraaurales para gaming con adaptador USB-C.",
             "precio": 69999,
@@ -731,6 +804,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 74,
             "nombre": "JBL Quantum 910 Wireless",
             "descripcion": "Auriculares inalámbricos de alto rendimiento con seguimiento de cabeza y cancelación activa de ruido.",
             "precio": 699999,
@@ -741,6 +815,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 75,
             "nombre": "JBL Quantum 360P Console Wireless",
             "descripcion": "Auriculares inalámbricos para consolas con micrófono desmontable.",
             "precio": 249999,
@@ -751,6 +826,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 76,
             "nombre": "JBL Quantum TWS Air",
             "descripcion": "Auriculares True Wireless para gaming.",
             "precio": 229999,
@@ -761,6 +837,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 77,
             "nombre": "JBL Quantum 250",
             "descripcion": "Auriculares con cable multiplataforma para gaming con JBL QuantumENGINE.",
             "precio": 129999,
@@ -771,6 +848,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 78,
             "nombre": "JBL Quantum 610 Wireless",
             "descripcion": "Auriculares inalámbricos over-ear para gaming con sonido envolvente.",
             "precio": 399999,
@@ -781,6 +859,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 79,
             "nombre": "JBL Quantum Stream Studio",
             "descripcion": "Micrófono USB cuádruple premium para streaming y gaming.",
             "precio": 349999,
@@ -791,6 +870,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 80,
             "nombre": "JBL Quantum 100N",
             "descripcion": "Auriculares gamer con cable, micrófono desmontable y diseño Blue/Red.",
             "precio": 84999,
@@ -801,6 +881,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 81,
             "nombre": "JBL Quantum 50",
             "descripcion": "Auriculares intraaurales gamer con cable, control de volumen y micrófono.",
             "precio": 49999,
@@ -811,6 +892,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 82,
             "nombre": "JBL Quantum Stream Wireless USB-C",
             "descripcion": "Micrófono inalámbrico portátil para streaming con conexión USB-C.",
             "precio": 249999,
@@ -821,6 +903,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 83,
             "nombre": "JBL Quantum Duo",
             "descripcion": "Altavoces para gaming en PC con sonido envolvente y luces RGB.",
             "precio": 349999,
@@ -831,6 +914,7 @@
             "categoria": "Gamer"
         },
         {
+            "id": 84,
             "nombre": "JBL Authentics 500",
             "descripcion": "Altavoz inteligente de alta fidelidad y diseño retro, con Wi-Fi, Bluetooth y asistentes de voz.",
             "precio": 1455710,
@@ -841,6 +925,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 85,
             "nombre": "JBL Cinema SB180",
             "descripcion": "Barra de sonido JBL Cinema SB180 con 110W RMS de potencia máxima y conexión HDMI ARC.",
             "precio": 644610,
@@ -851,6 +936,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 86,
             "nombre": "JBL BAR 800",
             "descripcion": "Barra de sonido con canales 5.1.2, altavoces envolventes desmontables y Dolby Atmos®.",
             "precio": 2316630,
@@ -861,6 +947,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 87,
             "nombre": "JBL Authentics 300",
             "descripcion": "Altavoz portátil de alta fidelidad y diseño retro, con Wi-Fi, Bluetooth y asistentes de voz.",
             "precio": 835010,
@@ -871,6 +958,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 88,
             "nombre": "MA510",
             "descripcion": "Receptor AV de 5.2 canales que ofrece un realismo espectacular con vídeo 8K para disfrutar de una experiencia de home cinema superior.",
             "precio": 1888999,
@@ -881,6 +969,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 89,
             "nombre": "JBL BAR 500",
             "descripcion": "Barra de sonido todo en uno con canales 5.1, MultiBeam™ y Dolby Atmos®.",
             "precio": 1578280,
@@ -891,6 +980,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 90,
             "nombre": "MA7100HP",
             "descripcion": "Receptor JBL MA7100HP de alto rendimiento de 7.2 canales que ofrece un realismo impresionante con vídeo 8K para disfrutar de la mejor experiencia de home cinema.",
             "precio": 3999999,
@@ -901,6 +991,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 91,
             "nombre": "Stage XD-6",
             "descripcion": "Altavoz 2 vías de 6.5\" (165mm) para interiores o exteriores, resistente a todo tipo de clima.",
             "precio": 899999,
@@ -911,6 +1002,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 92,
             "nombre": "Stage 240H",
             "descripcion": "Altavoz Dolby Atmos® de 2 vías con agudos de aluminio y cono de policelulosa de 114mm.",
             "precio": 770999,
@@ -921,6 +1013,7 @@
             "categoria": "Ofertas"
         },
         {
+            "id": 93,
             "nombre": "JBL Stage 200P",
             "descripcion": "Subwoofer de 10\" (250mm) y 300W de potencia, parte de la serie Stage con graves JBL profundos y potentes.",
             "precio": 1299999,
@@ -931,6 +1024,7 @@
             "categoria": "Ofertas"
         },
         {
+            "id": 94,
             "nombre": "MA9100HP",
             "descripcion": "Receptor JBL MA9100HP de alto rendimiento de 9.2 canales con soporte de vídeo 8K para home cinema.",
             "precio": 5199999,
@@ -941,6 +1035,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 95,
             "nombre": "JBL L75ms Music System",
             "descripcion": "Sistema de música integrado con acabado Black Gloss, ideal para audio de alta fidelidad.",
             "precio": 650000,
@@ -951,6 +1046,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 96,
             "nombre": "Stage 245C",
             "descripcion": "Altavoz de canal central de 2.5 vías con geometría HDI™, tweeters de aluminio y cuádruples conos de 200mm.",
             "precio": 770999,
@@ -961,6 +1057,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 97,
             "nombre": "Stage 250B",
             "descripcion": "Altavoz de estantería de 2 vías con geometría HDI™ y cono de 130mm, ideal como principal o envolvente.",
             "precio": 799999,
@@ -971,6 +1068,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 98,
             "nombre": "JBL BAR 1000",
             "descripcion": "Barra de sonido 7.1.4 con altavoces desmontables, MultiBeam™, Dolby Atmos® y DTS:X®.",
             "precio": 2999999,
@@ -981,6 +1079,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 99,
             "nombre": "Stage 260F",
             "descripcion": "Altavoz de suelo de 2.5 vías con doble cono de 165mm y tweeter de aluminio anodizado.",
             "precio": 1099999,
@@ -991,6 +1090,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 100,
             "nombre": "JBL Bar 1000MK2",
             "descripcion": "Sistema de barra de sonido 7.1.4 con altavoces envolventes extraíbles, MultiBeam 3.0™, Dolby Atmos® y DTS:X®.",
             "precio": null,
@@ -1001,6 +1101,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 101,
             "nombre": "L52 Classic",
             "descripcion": "Altavoz de estantería de 2 vías con woofer de 130mm, disponible en colores Black, Blue y Orange.",
             "precio": 1999999,
@@ -1011,6 +1112,7 @@
             "categoria": "Hogar"
         },
         {
+            "id": 102,
             "nombre": "Stage3 527F",
             "descripcion": "Altavoz coaxial de 2 vías y 130 mm (5-1/4\") para automóvil, ideal para actualización de fábrica sin rejilla.",
             "precio": 80999,
@@ -1021,16 +1123,16 @@
             "categoria": "Car Audio"
         },
         {
+            "id": 103,
             "nombre": "GTO629",
             "descripcion": "Sistema de altavoces de 2 vías de 5\" x 7\" con potencia máxima de 180 W.",
             "precio": 249999,
             "imagen": "../assets/img/jgl-gto-629.jpg",
             "oferta": false,
-            "precio_oferta": null,
-            "envio-gratis": false,
-            "categoria": "Car Audio"
+            "precio_oferta": null
         },
         {
+            "id": 104,
             "nombre": "Stage 122",
             "descripcion": "Subwoofer JBL Stage para automóvil disponible en versiones de 8\" (200 mm), 10\" (250 mm) y 12\" (300 mm).",
             "precio": 119999,
@@ -1040,5 +1142,5 @@
             "envio-gratis": true,
             "categoria": "Car Audio"
         }
-    ]
+]
 }

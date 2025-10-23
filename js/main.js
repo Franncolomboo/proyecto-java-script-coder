@@ -1,84 +1,216 @@
-// main.js
+let catalogoCompleto = [];
+let productosBase = [];
+let productosFiltrados = [];
 
-// Variables globales para el manejo de filtros y estado
-let productosBase = []; 
-let productosFiltrados = []; 
+const CARRITO_STORAGE_KEY = 'jblCarrito';
 
-// FUNCIÓN PRINCIPAL: Fetch y Filtrado
-async function obtenerProductosPorCategoria(categoriaDeseada) {
-    // Determinar la ruta correcta al JSON dinámicamente
+function obtenerProductoData(id) {
+    const idNumerico = parseInt(id);
+    return catalogoCompleto.find(p => p.id === idNumerico) || null;
+}
+
+function obtenerCarrito() {
+    const carritoJSON = localStorage.getItem(CARRITO_STORAGE_KEY);
+    return carritoJSON ? JSON.parse(carritoJSON) : [];
+}
+
+function guardarCarrito(carrito) {
+    localStorage.setItem(CARRITO_STORAGE_KEY, JSON.stringify(carrito));
+    actualizarContadorCarrito();
+}
+
+function mostrarToast(mensaje) {
+    if (typeof Toastify === 'undefined') return;
+    
+    Toastify({
+        text: "✅ " + mensaje,
+        duration: 3000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+            background: "linear-gradient(to right, #00b09b, #96c93d)",
+            borderRadius: "5px"
+        },
+        onClick: function(){ 
+            const isRoot = !window.location.pathname.includes('/pages/');
+            const carritoUrl = isRoot ? './pages/Carrito.html' : './Carrito.html';
+            window.location.href = carritoUrl; 
+        } 
+    }).showToast();
+}
+
+function mostrarToastExito(mensaje) {
+    if (typeof Toastify === 'undefined') return;
+
+    Toastify({
+        text: "🎉 " + mensaje,
+        duration: 4000,
+        close: true,
+        gravity: "bottom", 
+        position: "center", 
+        stopOnFocus: true, 
+        style: {
+            background: "linear-gradient(to right, #007bff, #17a2b8)", 
+            borderRadius: "10px",
+            padding: "15px",
+            fontSize: "1.1em"
+        }
+    }).showToast();
+}
+
+function simularFinalizarCompra() {
+    mostrarToastExito("¡Compra realizada con éxito! Procesando pedido...");
+
+    setTimeout(() => {
+        localStorage.removeItem(CARRITO_STORAGE_KEY);
+        
+        if (document.getElementById('carrito-items-contenedor')) {
+            renderizarCarritoView(); 
+        }
+        actualizarContadorCarrito(); 
+
+        setTimeout(() => {
+            window.location.href = '../index.html'; 
+        }, 2000); 
+
+    }, 1500); 
+}
+
+function actualizarContadorCarrito() {
+    const carrito = obtenerCarrito();
+    const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+
+    const contadorDesktop = document.getElementById('contador-carrito');
+    const contadorMovil = document.getElementById('contador-carrito-movil'); 
+
+    if (contadorDesktop) {
+        contadorDesktop.textContent = totalItems;
+        contadorDesktop.style.display = totalItems > 0 ? 'inline-block' : 'none';
+    }
+    if (contadorMovil) {
+        contadorMovil.textContent = totalItems;
+        contadorMovil.style.display = totalItems > 0 ? 'inline-block' : 'none';
+    }
+}
+
+function agregarAlCarrito(productoData) {
+    const carrito = obtenerCarrito();
+    const productoExistente = carrito.find(item => item.id === productoData.id);
+
+    if (productoExistente) {
+        productoExistente.cantidad++;
+    } else {
+        const precioUnitario = productoData.precio_oferta || productoData.precio || 0;
+
+        carrito.push({
+            id: productoData.id,
+            nombre: productoData.nombre,
+            imagen: productoData.imagen,
+            precio: precioUnitario,
+            cantidad: 1
+        });
+    }
+
+    guardarCarrito(carrito);
+    if (document.getElementById('carrito-items-contenedor')) {
+        renderizarCarritoView();
+    }
+
+    mostrarToast(productoData.nombre + ' agregado al carrito');
+}
+
+function decrementarCantidad(id) {
+    let carrito = obtenerCarrito();
+    const idNumerico = parseInt(id);
+    const index = carrito.findIndex(item => item.id === idNumerico);
+
+    if (index !== -1) {
+        if (carrito[index].cantidad > 1) {
+            carrito[index].cantidad--;
+        } else {
+            carrito.splice(index, 1);
+        }
+    }
+
+    guardarCarrito(carrito);
+}
+
+function eliminarProducto(id) {
+    let carrito = obtenerCarrito();
+    const idNumerico = parseInt(id);
+    carrito = carrito.filter(item => item.id !== idNumerico);
+    guardarCarrito(carrito);
+}
+
+async function obtenerDataCatalogo() {
+    if (catalogoCompleto.length > 0) return catalogoCompleto;
+
     const isRoot = !window.location.pathname.includes('/pages/');
     const API_URL = isRoot ? './data/catalogo.json' : '../data/catalogo.json';
-    
+
     try {
         const response = await fetch(API_URL);
 
         if (!response.ok) {
-            throw new Error(`Error HTTP: ${response.status}`);
+            throw new Error(`Error HTTP o Archivo no encontrado. Status: ${response.status}. Ruta intentada: ${API_URL}`);
         }
 
         const data = await response.json();
-        
-        // Filtra el array de productos por la categoría deseada
-        return data.productos.filter(producto => 
-            producto.categoria === categoriaDeseada
-        );
+        catalogoCompleto = data.productos;
+
+        return catalogoCompleto;
 
     } catch (error) {
-        console.error("Hubo un error al obtener o procesar los productos:", error);
+        console.error("Hubo un error al obtener o procesar el catálogo:", error);
         return [];
     }
 }
 
-// NUEVA FUNCIÓN: Aplica filtros y ordenamiento a la lista de productos
-function aplicarFiltrosYRenderizar() {
-    let productosParaMostrar = [...productosBase]; 
-    
-    const contenedorId = productosBase.length > 0 && productosBase[0].categoria === 'Ofertas' 
-                        ? 'contenedor-destacados' 
-                        : productosBase.length > 0 && productosBase[0].categoria === 'Auriculares' && document.getElementById('contenedor-ofertas') 
-                        ? 'contenedor-ofertas'
-                        : 'productos-contenedor'; 
+async function obtenerProductosPorCategoria(categoriaDeseada) {
+    const catalogo = await obtenerDataCatalogo();
+    return catalogo.filter(producto =>
+        producto.categoria === categoriaDeseada
+    );
+}
 
-    // 1. OBTENER VALORES DE FILTRO Y ORDENAMIENTO
+function aplicarFiltrosYRenderizar(contenedorId) {
+    let productosParaMostrar = [...productosBase];
+
     const maxPriceInput = document.getElementById('rangoPrecio');
     const valorRangoSpan = document.getElementById('valorRango');
     const isEnvioGratisChecked = document.getElementById('envioGratis')?.checked;
     const ordenamiento = document.getElementById('ordenarPrecio')?.value;
-    
-    // Solo aplicar filtros si estamos en una página de catálogo
+
     if (document.body.getAttribute('data-categoria')) {
-        
+
         if (maxPriceInput && valorRangoSpan) {
             const maxPrice = parseInt(maxPriceInput.value);
             valorRangoSpan.textContent = maxPrice.toLocaleString('es-ES');
-            
-            // FILTRO POR PRECIO MÁXIMO
+
             productosParaMostrar = productosParaMostrar.filter(producto => {
                 const precioAComparar = producto.precio_oferta || producto.precio || 0;
                 return precioAComparar <= maxPrice;
             });
         }
 
-        // FILTRO POR ENVÍO GRATIS
         if (isEnvioGratisChecked) {
             productosParaMostrar = productosParaMostrar.filter(producto => producto['envio-gratis'] === true);
         }
-        
-        // ORDENAMIENTO POR PRECIO
+
         if (ordenamiento && ordenamiento !== 'default') {
-            const factor = (ordenamiento === 'minMax') ? 1 : -1; 
-            
+            const factor = (ordenamiento === 'minMax') ? 1 : -1;
+
             productosParaMostrar.sort((a, b) => {
                 const precioA = a.precio_oferta || a.precio || 0;
                 const precioB = b.precio_oferta || b.precio || 0;
-                
-                return (precioA - precioB) * factor; 
+
+                return (precioA - precioB) * factor;
             });
         }
     }
 
-    // RENDERIZAR RESULTADO
     productosFiltrados = productosParaMostrar;
     renderizarProductos(productosFiltrados, contenedorId);
 }
@@ -86,38 +218,33 @@ function aplicarFiltrosYRenderizar() {
 function renderizarProductos(productos, elementoContenedorId) {
     const contenedor = document.getElementById(elementoContenedorId);
     if (!contenedor) return;
-    
-    // Mostrar mensaje si no hay productos
+
     if (productos.length === 0) {
         contenedor.innerHTML = '<p class="alert alert-warning">No se encontraron productos con los filtros aplicados.</p>';
         return;
     }
 
     contenedor.innerHTML = productos.map(producto => {
-        // CORRECCIÓN PARA EL PRECIO: Si es null, muestra 'Consultar precio'
-        const precioNormal = producto.precio !== null ? producto.precio.toLocaleString('es-ES') : 'Consultar precio';  
+        const precioNormal = producto.precio !== null ? producto.precio.toLocaleString('es-ES') : 'Consultar precio';
         const precioOferta = producto.precio_oferta ? producto.precio_oferta.toLocaleString('es-ES') : null;
-        
-        // Contenido de los precios y la oferta
+
         const preciosHTML = producto.oferta && producto.precio_oferta !== null
              ? `
                  <div class="precios">
-                     <p class="precio-anterior">$${precioNormal}</p>
-                     <p class="nuevo-precio">$${precioOferta}</p>
+                      <p class="precio-anterior">$${precioNormal}</p>
+                      <p class="nuevo-precio">$${precioOferta}</p>
                  </div>
                  `
              : `
                  <div class="precios">
-                     <p class="nuevo-precio">${precioNormal.includes('Consultar') ? precioNormal : '$' + precioNormal}</p>
+                      <p class="nuevo-precio">${precioNormal.includes('Consultar') ? precioNormal : '$' + precioNormal}</p>
                  </div>
                  `;
-        
-        // Etiqueta de Envío Gratis 
+
         const envioGratisHTML = producto['envio-gratis']
              ? `<div class="envio-gratis"> Envío GRATIS🚀</div>`
-             : ''; 
+             : '';
 
-        // Retorna la estructura HTML completa
         return `
             <div class="card-jbl">
                 <img src="${producto.imagen}" alt="${producto.nombre}" onerror="this.onerror=null; this.src='../assets/img/default-placeholder.jpg';">
@@ -128,72 +255,234 @@ function renderizarProductos(productos, elementoContenedorId) {
                     <p>${producto.descripcion}</p>
                     </div>
                     ${preciosHTML}
-                    <button class="boton-card">Agregar</button>
+                    <button class="boton-card" data-id="${producto.id}">Agregar</button>
                 </div>
             </div>
         `;
     }).join('');
+
+    const botonesAgregar = contenedor.querySelectorAll('.boton-card');
+
+    if (botonesAgregar.length === 0) return;
+
+    botonesAgregar.forEach(button => {
+        button.addEventListener('click', (e) => {
+            const productoId = e.currentTarget.getAttribute('data-id');
+            const productoData = obtenerProductoData(productoId);
+
+            if (productoData) {
+                agregarAlCarrito(productoData);
+            } else {
+                console.error("ERROR CRÍTICO: Producto con ID:", productoId, "no encontrado en el catálogo.");
+            }
+        });
+    });
 }
 
-
-/**
- * Función que carga y muestra productos de una categoría específica en un contenedor.
- * @param {string} categoria - La categoría a filtrar (ej: 'Auriculares', 'Parlantes', 'Ofertas').
- * @param {string} contenedorId - El ID del elemento HTML donde se muestran los productos.
- */
 async function inicializarPagina(categoria, contenedorId) {
-    // 1. Obtener los productos filtrados por la categoría y guardarlos en productosBase
     productosBase = await obtenerProductosPorCategoria(categoria);
+    aplicarFiltrosYRenderizar(contenedorId);
 
-    // 2. Renderizar la primera vez con filtros por defecto
-    aplicarFiltrosYRenderizar(); 
-    
-    // 3. Configurar Eventos para Filtro y Ordenamiento (Solo si estamos en una página de catálogo)
     if (document.body.getAttribute('data-categoria')) {
         const rangoPrecio = document.getElementById('rangoPrecio');
         const ordenarPrecio = document.getElementById('ordenarPrecio');
         const envioGratis = document.getElementById('envioGratis');
         const btnReiniciarFiltros = document.getElementById('btnReiniciarFiltros');
-        
-        if (rangoPrecio) rangoPrecio.addEventListener('input', aplicarFiltrosYRenderizar);
-        if (envioGratis) envioGratis.addEventListener('change', aplicarFiltrosYRenderizar);
-        if (ordenarPrecio) ordenarPrecio.addEventListener('change', aplicarFiltrosYRenderizar);
+
+        if (rangoPrecio) rangoPrecio.addEventListener('input', () => aplicarFiltrosYRenderizar(contenedorId));
+        if (envioGratis) envioGratis.addEventListener('change', () => aplicarFiltrosYRenderizar(contenedorId));
+        if (ordenarPrecio) ordenarPrecio.addEventListener('change', () => aplicarFiltrosYRenderizar(contenedorId));
 
         if (btnReiniciarFiltros) {
             btnReiniciarFiltros.addEventListener('click', () => {
                 if (ordenarPrecio) ordenarPrecio.value = 'default';
                 if (envioGratis) envioGratis.checked = false;
-                if (rangoPrecio) rangoPrecio.value = rangoPrecio.max; 
-                
-                aplicarFiltrosYRenderizar();
+                if (rangoPrecio) rangoPrecio.value = rangoPrecio.max;
+
+                aplicarFiltrosYRenderizar(contenedorId);
             });
         }
     }
+}
+
+function manejarCupones() {
+    const aplicarCuponBtn = document.getElementById('aplicarCuponBtn');
+    const cuponInput = document.getElementById('cuponInput');
+    const cuponMensaje = document.getElementById('cupon-mensaje');
+
+    if (aplicarCuponBtn) {
+        aplicarCuponBtn.addEventListener('click', () => {
+            const codigo = cuponInput.value.trim().toUpperCase();
+
+            if (codigo === 'JBL20') {
+                localStorage.setItem('cuponAplicado', codigo);
+                cuponMensaje.textContent = 'Cupón JBL20 aplicado con éxito (20% OFF).';
+                cuponMensaje.classList.remove('text-muted', 'text-danger');
+                cuponMensaje.classList.add('text-success');
+            } else {
+                localStorage.removeItem('cuponAplicado');
+                cuponMensaje.textContent = 'Cupón inválido o expirado.';
+                cuponMensaje.classList.remove('text-muted', 'text-success');
+                cuponMensaje.classList.add('text-danger');
+            }
+            renderizarCarritoView();
+        });
+    }
+}
+
+function actualizarResumenCarrito(carrito, subtotal) {
+    const cuponAplicado = localStorage.getItem('cuponAplicado');
+    let descuento = 0;
+    let descuentoPorcentaje = 0;
+
+    if (cuponAplicado === 'JBL20') {
+        descuentoPorcentaje = 20;
+        descuento = subtotal * 0.20;
+    }
+
+    const totalFinal = subtotal - descuento;
+
+    document.getElementById('total-subtotal').textContent = subtotal.toLocaleString('es-ES');
+    document.getElementById('total-descuento').textContent = descuento.toLocaleString('es-ES');
+    document.getElementById('total-final').textContent = totalFinal.toLocaleString('es-ES');
+
+    const descuentoPorcentajeSpan = document.getElementById('descuento-porcentaje');
+    if (descuentoPorcentajeSpan) {
+        descuentoPorcentajeSpan.textContent = `${descuentoPorcentaje}%`;
+    }
+}
+
+function adjuntarEventosCarritoView(contenedor) {
+    contenedor.querySelectorAll('.btn-aumentar').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-id');
+            const productoData = obtenerProductoData(id);
+            if (productoData) {
+                agregarAlCarrito(productoData);
+            }
+        });
+    });
+
+    contenedor.querySelectorAll('.btn-decrementar').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-id');
+            decrementarCantidad(id);
+            renderizarCarritoView();
+        });
+    });
+
+    contenedor.querySelectorAll('.btn-eliminar-completo').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-id');
+            eliminarProducto(id);
+            renderizarCarritoView();
+        });
+    });
+}
+
+function renderizarCarritoView() {
+    const carrito = obtenerCarrito();
+    const contenedor = document.getElementById('carrito-items-contenedor');
+    const finalizarCompraBtn = document.getElementById('finalizarCompraBtn');
+
+    if (!contenedor) return;
+
+    if (carrito.length === 0) {
+        contenedor.innerHTML = `
+            <tr>
+                <td colspan="6" class="text-center p-5">
+                    <p class="lead text-muted">El carrito está vacío. ¡Agrega algunos productos!</p>
+                </td>
+            </tr>
+        `;
+        if (finalizarCompraBtn) finalizarCompraBtn.disabled = true;
+        actualizarResumenCarrito(carrito, 0);
+        return;
+    }
+
+    if (finalizarCompraBtn) finalizarCompraBtn.disabled = false;
+    let html = '';
+    let subtotalGeneral = 0;
+
+    carrito.forEach(producto => {
+        const precioUnitario = producto.precio || 0;
+        const subtotalProducto = precioUnitario * producto.cantidad;
+        subtotalGeneral += subtotalProducto;
+
+        html += `
+            <tr data-id="${producto.id}">
+                <td><img src="${producto.imagen || '../assets/img/default-placeholder.jpg'}" class="img-thumbnail" style="width: 80px;" alt="${producto.nombre}"></td>
+                <td>${producto.nombre}</td>
+                <td class="text-center">$${precioUnitario.toLocaleString('es-ES')}</td>
+                <td class="text-center">
+                    <div class="input-group input-group-sm justify-content-center">
+                        <button class="btn btn-outline-secondary btn-decrementar" data-id="${producto.id}" ${producto.cantidad <= 1 ? 'disabled' : ''}>-</button>
+                        <input type="text" class="form-control text-center cantidad-input" value="${producto.cantidad}" readonly style="width: 50px;">
+                        <button class="btn btn-outline-secondary btn-aumentar" data-id="${producto.id}">+</button>
+                    </div>
+                </td>
+                <td class="text-end">$${subtotalProducto.toLocaleString('es-ES')}</td>
+                <td><button class="btn btn-sm btn-outline-danger btn-eliminar-completo" data-id="${producto.id}">×</button></td>
+            </tr>
+        `;
+    });
+
+    contenedor.innerHTML = html;
+
+    adjuntarEventosCarritoView(contenedor);
+    actualizarResumenCarrito(carrito, subtotalGeneral);
 }
 
 
 const ID_CONTENEDOR_DESTACADOS = 'contenedor-destacados';
 const ID_CONTENEDOR_AURICULARES = 'contenedor-ofertas';
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Lógica para el INDEX.HTML (que necesita cargar múltiples categorías)
+document.addEventListener('DOMContentLoaded', async () => {
+    await obtenerDataCatalogo();
 
     const contenedorDestacados = document.getElementById(ID_CONTENEDOR_DESTACADOS);
     const contenedorAuriculares = document.getElementById(ID_CONTENEDOR_AURICULARES);
 
     if (contenedorDestacados && contenedorAuriculares) {
-        // Estamos en el index.html: Inicia la carga de las dos secciones
-        inicializarPagina('Ofertas', ID_CONTENEDOR_DESTACADOS); 
+        inicializarPagina('Ofertas', ID_CONTENEDOR_DESTACADOS);
         inicializarPagina('Auriculares', ID_CONTENEDOR_AURICULARES);
-        
+
     } else {
-        // Lógica para las páginas de categorías únicas
         const categoriaUnica = document.body.getAttribute('data-categoria');
-        const contenedorUnicoId = 'productos-contenedor'; 
+        const contenedorUnicoId = 'productos-contenedor';
 
         if (categoriaUnica && document.getElementById(contenedorUnicoId)) {
-            console.log(`Cargando productos para la categoría: ${categoriaUnica}`);
             inicializarPagina(categoriaUnica, contenedorUnicoId);
         }
     }
+
+    const carritoContenedor = document.getElementById('carrito-items-contenedor');
+    const formularioPago = document.getElementById('formulario-pago'); 
+
+    if (carritoContenedor) {
+        renderizarCarritoView();
+        manejarCupones();
+
+        if (formularioPago) {
+            formularioPago.addEventListener('submit', function (e) {
+                e.preventDefault(); 
+                e.stopPropagation();
+
+                if (obtenerCarrito().length === 0) {
+                    alert("No puedes finalizar la compra con el carrito vacío.");
+                    formularioPago.classList.remove('was-validated');
+                    return;
+                }
+                
+                if (formularioPago.checkValidity()) {
+                    simularFinalizarCompra();
+                    formularioPago.classList.remove('was-validated'); 
+                } else {
+                    formularioPago.classList.add('was-validated');
+                }
+            });
+        }
+    }
+
+    actualizarContadorCarrito();
 });
