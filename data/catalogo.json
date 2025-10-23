@@ -324,7 +324,7 @@
             "nombre": "JBL Wave Buds",
             "descripcion": "Auriculares de botón True Wireless con sonido JBL Pure Bass.",
             "precio": 112999,
-            "imagen": "../assets/assets/img/jbl-wave-buds.jpg",
+            "imagen": "../assets/img/jbl-wave-buds.jpg",
             "oferta": true,
             "precio_oferta": 73999,
             "envio-gratis": false,
