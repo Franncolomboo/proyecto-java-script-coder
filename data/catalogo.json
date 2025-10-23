@@ -1129,7 +1129,8 @@
             "precio": 249999,
             "imagen": "../assets/img/jgl-gto-629.jpg",
             "oferta": false,
-            "precio_oferta": null
+            "precio_oferta": null,
+            "categoria": "Car Audio"
         },
         {
             "id": 104,
