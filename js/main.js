@@ -14,19 +14,16 @@ const CARRITO_STORAGE_KEY = 'jblCarrito';
 // ----------------------------------------------------
 
 function obtenerProductoData(id) {
-    // Buscamos un producto por ID dentro del catálogo completo.
     const idNumerico = parseInt(id);
     return catalogoCompleto.find(p => p.id === idNumerico) || null;
 }
 
 function obtenerCarrito() {
-    // Recupera el carrito del localStorage. Si no existe, devuelve un array vacío.
     const carritoJSON = localStorage.getItem(CARRITO_STORAGE_KEY);
     return carritoJSON ? JSON.parse(carritoJSON) : [];
 }
 
 function guardarCarrito(carrito) {
-    // Guarda el estado actual del carrito en localStorage y actualiza el contador del ícono.
     localStorage.setItem(CARRITO_STORAGE_KEY, JSON.stringify(carrito));
     actualizarContadorCarrito();
 }
@@ -36,15 +33,12 @@ function guardarCarrito(carrito) {
 // ----------------------------------------------------
 
 function mostrarToast(mensaje) {
-    // Muestra un Toastify para notificar al usuario que el producto fue agregado.
-    // Incluye lógica de redirección al carrito al hacer clic.
     if (typeof Toastify === 'undefined') return;
     
     Toastify({
         text: "✅ " + mensaje,
         duration: 1800,
         onClick: function(){ 
-            // Determina la ruta correcta a Carrito.html (ajusta según la ubicación actual).
             const isRoot = !window.location.pathname.includes('/pages/');
             const carritoUrl = isRoot ? './pages/Carrito.html' : './Carrito.html';
             window.location.href = carritoUrl; 
@@ -53,8 +47,6 @@ function mostrarToast(mensaje) {
 }
 
 function mostrarToastExito(mensaje) {
-    // Muestra un Toastify con un estilo y posición central diferente
-    // para indicar la finalización exitosa de la compra.
     if (typeof Toastify === 'undefined') return;
 
     Toastify({
@@ -62,7 +54,6 @@ function mostrarToastExito(mensaje) {
         duration: 4000,
         gravity: "bottom", 
         position: "center", 
-        // Estilo de fondo distinto para la notificación de éxito.
         style: {
             background: "linear-gradient(to right, #007bff, #17a2b8)", 
         }
@@ -74,21 +65,17 @@ function mostrarToastExito(mensaje) {
 // ----------------------------------------------------
 
 function simularFinalizarCompra() {
-    // Simula el proceso de compra con pausas (setTimeout) para dar una experiencia de usuario más tranquila.
     mostrarToastExito("¡Compra realizada con éxito! Procesando pedido...");
 
-    // Pausa inicial de 1.5 segundos.
     setTimeout(() => {
-        // Vacía el carrito del localStorage.
         localStorage.removeItem(CARRITO_STORAGE_KEY);
+        localStorage.removeItem('cuponAplicado'); // Limpia el cupón aplicado al finalizar
         
-        // Refresca la vista del carrito y el contador.
         if (document.getElementById('carrito-items-contenedor')) {
             renderizarCarritoView(); 
         }
-        actualizarContadorCarrito();    
+        actualizarContadorCarrito();    
 
-        // Segunda pausa de 2 segundos antes de redirigir al inicio.
         setTimeout(() => {
             window.location.href = '../index.html'; 
         }, 2000); 
@@ -101,7 +88,6 @@ function simularFinalizarCompra() {
 // ----------------------------------------------------
 
 function actualizarContadorCarrito() {
-    // Calcula el número total de ítems en el carrito y actualiza el valor del span en el header.
     const carrito = obtenerCarrito();
     const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
 
@@ -110,10 +96,8 @@ function actualizarContadorCarrito() {
 
     if (contadorDesktop) {
         contadorDesktop.textContent = totalItems;
-        // Oculta/muestra el contador si el total es cero.
         contadorDesktop.style.display = totalItems > 0 ? 'inline-block' : 'none';
     }
-    // Lógica similar para el contador móvil, si existe.
     if (contadorMovil) {
         contadorMovil.textContent = totalItems;
         contadorMovil.style.display = totalItems > 0 ? 'inline-block' : 'none';
@@ -121,7 +105,6 @@ function actualizarContadorCarrito() {
 }
 
 function agregarAlCarrito(productoData) {
-    // Busca si el producto ya existe. Si existe, aumenta la cantidad; si no, lo añade.
     const carrito = obtenerCarrito();
     const productoExistente = carrito.find(item => item.id === productoData.id);
 
@@ -140,7 +123,6 @@ function agregarAlCarrito(productoData) {
     }
 
     guardarCarrito(carrito);
-    // Si estamos en la página del carrito, la refrescamos.
     if (document.getElementById('carrito-items-contenedor')) {
         renderizarCarritoView();
     }
@@ -149,7 +131,6 @@ function agregarAlCarrito(productoData) {
 }
 
 function decrementarCantidad(id) {
-    // Reduce la cantidad de un producto. Si llega a 1, lo elimina del carrito.
     let carrito = obtenerCarrito();
     const idNumerico = parseInt(id);
     const index = carrito.findIndex(item => item.id === idNumerico);
@@ -158,7 +139,7 @@ function decrementarCantidad(id) {
         if (carrito[index].cantidad > 1) {
             carrito[index].cantidad--;
         } else {
-            carrito.splice(index, 1); // Elimina el ítem si la cantidad es 1.
+            carrito.splice(index, 1);
         }
     }
 
@@ -166,7 +147,6 @@ function decrementarCantidad(id) {
 }
 
 function eliminarProducto(id) {
-    // Elimina completamente un producto del carrito.
     let carrito = obtenerCarrito();
     const idNumerico = parseInt(id);
     carrito = carrito.filter(item => item.id !== idNumerico);
@@ -178,10 +158,8 @@ function eliminarProducto(id) {
 // ----------------------------------------------------
 
 async function obtenerDataCatalogo() {
-    // Carga el catálogo desde el JSON. Utiliza la variable global para evitar recargar.
     if (catalogoCompleto.length > 0) return catalogoCompleto;
 
-    // Ajusta la ruta del JSON dependiendo de si estamos en la raíz o en una subpágina (/pages).
     const isRoot = !window.location.pathname.includes('/pages/');
     const API_URL = isRoot ? './data/catalogo.json' : '../data/catalogo.json';
 
@@ -204,7 +182,6 @@ async function obtenerDataCatalogo() {
 }
 
 async function obtenerProductosPorCategoria(categoriaDeseada) {
-    // Filtra el catálogo cargado por la categoría deseada.
     const catalogo = await obtenerDataCatalogo();
     return catalogo.filter(producto =>
         producto.categoria === categoriaDeseada
@@ -216,7 +193,6 @@ async function obtenerProductosPorCategoria(categoriaDeseada) {
 // ----------------------------------------------------
 
 function aplicarFiltrosYRenderizar(contenedorId) {
-    // Aplica los filtros de precio, envío gratis y ordenamiento antes de renderizar.
     let productosParaMostrar = [...productosBase];
 
     const maxPriceInput = document.getElementById('rangoPrecio');
@@ -228,7 +204,6 @@ function aplicarFiltrosYRenderizar(contenedorId) {
 
         if (maxPriceInput && valorRangoSpan) {
             const maxPrice = parseInt(maxPriceInput.value);
-            // Filtra productos por rango de precio.
             productosParaMostrar = productosParaMostrar.filter(producto => {
                 const precioAComparar = producto.precio_oferta || producto.precio || 0;
                 return precioAComparar <= maxPrice;
@@ -236,13 +211,11 @@ function aplicarFiltrosYRenderizar(contenedorId) {
         }
 
         if (isEnvioGratisChecked) {
-            // Filtra productos por envío gratis.
             productosParaMostrar = productosParaMostrar.filter(producto => producto['envio-gratis'] === true);
         }
 
         if (ordenamiento && ordenamiento !== 'default') {
             const factor = (ordenamiento === 'minMax') ? 1 : -1;
-            // Ordena productos por precio (ascendente o descendente).
             productosParaMostrar.sort((a, b) => {
                 const precioA = a.precio_oferta || a.precio || 0;
                 const precioB = b.precio_oferta || b.precio || 0;
@@ -257,7 +230,6 @@ function aplicarFiltrosYRenderizar(contenedorId) {
 }
 
 function renderizarProductos(productos, elementoContenedorId) {
-    // Genera el HTML de las tarjetas de producto y lo inserta en el contenedor.
     const contenedor = document.getElementById(elementoContenedorId);
     if (!contenedor) return;
 
@@ -267,7 +239,6 @@ function renderizarProductos(productos, elementoContenedorId) {
     }
 
     contenedor.innerHTML = productos.map(producto => {
-        // Lógica compleja para mostrar precios (oferta vs. normal) y el tag de envío gratis.
         const precioNormal = producto.precio !== null ? producto.precio.toLocaleString('es-ES') : 'Consultar precio';
         const precioOferta = producto.precio_oferta ? producto.precio_oferta.toLocaleString('es-ES') : null;
 
@@ -308,7 +279,6 @@ function renderizarProductos(productos, elementoContenedorId) {
 
     if (botonesAgregar.length === 0) return;
 
-    // Adjunta el evento de 'agregarAlCarrito' a cada botón generado dinámicamente.
     botonesAgregar.forEach(button => {
         button.addEventListener('click', (e) => {
             const productoId = e.currentTarget.getAttribute('data-id');
@@ -324,7 +294,6 @@ function renderizarProductos(productos, elementoContenedorId) {
 }
 
 async function inicializarPagina(categoria, contenedorId) {
-    // Carga los productos base para una categoría y establece los listeners de los filtros.
     productosBase = await obtenerProductosPorCategoria(categoria);
     aplicarFiltrosYRenderizar(contenedorId);
 
@@ -334,14 +303,12 @@ async function inicializarPagina(categoria, contenedorId) {
         const envioGratis = document.getElementById('envioGratis');
         const btnReiniciarFiltros = document.getElementById('btnReiniciarFiltros');
 
-        // Escuchas para actualizar los filtros en tiempo real (input/change).
         if (rangoPrecio) rangoPrecio.addEventListener('input', () => aplicarFiltrosYRenderizar(contenedorId));
         if (envioGratis) envioGratis.addEventListener('change', () => aplicarFiltrosYRenderizar(contenedorId));
         if (ordenarPrecio) ordenarPrecio.addEventListener('change', () => aplicarFiltrosYRenderizar(contenedorId));
 
         if (btnReiniciarFiltros) {
             btnReiniciarFiltros.addEventListener('click', () => {
-                // Lógica para restablecer todos los valores de los filtros a su estado inicial.
                 if (ordenarPrecio) ordenarPrecio.value = 'default';
                 if (envioGratis) envioGratis.checked = false;
                 if (rangoPrecio) rangoPrecio.value = rangoPrecio.max;
@@ -353,11 +320,10 @@ async function inicializarPagina(categoria, contenedorId) {
 }
 
 // ----------------------------------------------------
-// LÓGICA DE CUPONES Y RESUMEN DEL CARRITO
+// LÓGICA DE CUPONES Y RESUMEN DEL CARRITO (MODIFICADAS)
 // ----------------------------------------------------
 
 function manejarCupones() {
-    // Escucha el botón de "Aplicar Cupón" y guarda el cupón 'JBL20' en localStorage.
     const aplicarCuponBtn = document.getElementById('aplicarCuponBtn');
     const cuponInput = document.getElementById('cuponInput');
     const cuponMensaje = document.getElementById('cupon-mensaje');
@@ -366,9 +332,14 @@ function manejarCupones() {
         aplicarCuponBtn.addEventListener('click', () => {
             const codigo = cuponInput.value.trim().toUpperCase();
 
-            if (codigo === 'JBL20') {
+            if (codigo === 'JBLFRAN') {
                 localStorage.setItem('cuponAplicado', codigo);
-                cuponMensaje.textContent = 'Cupón JBL20 aplicado con éxito (20% OFF).';
+                cuponMensaje.textContent = 'Cupón JBLFRAN aplicado con éxito (20% OFF).';
+                cuponMensaje.classList.remove('text-muted', 'text-danger');
+                cuponMensaje.classList.add('text-success');
+            } else if (codigo === 'JBL10') {
+                localStorage.setItem('cuponAplicado', codigo);
+                cuponMensaje.textContent = 'Cupón JBL10 aplicado con éxito (10% OFF).';
                 cuponMensaje.classList.remove('text-muted', 'text-danger');
                 cuponMensaje.classList.add('text-success');
             } else {
@@ -377,13 +348,12 @@ function manejarCupones() {
                 cuponMensaje.classList.remove('text-muted', 'text-success');
                 cuponMensaje.classList.add('text-danger');
             }
-            renderizarCarritoView(); // Obliga al resumen a recalcularse con el nuevo cupón.
+            renderizarCarritoView();
         });
     }
 }
 
 function actualizarResumenCarrito(carrito, subtotal) {
-    // Calcula el descuento del cupón (solo 'JBL20' al 20%) y el total final.
     const cuponAplicado = localStorage.getItem('cuponAplicado');
     let descuento = 0;
     let descuentoPorcentaje = 0;
@@ -391,11 +361,13 @@ function actualizarResumenCarrito(carrito, subtotal) {
     if (cuponAplicado === 'JBL20') {
         descuentoPorcentaje = 20;
         descuento = subtotal * 0.20;
+    } else if (cuponAplicado === 'JBL10') {
+        descuentoPorcentaje = 10;
+        descuento = subtotal * 0.10;
     }
 
     const totalFinal = subtotal - descuento;
 
-    // Actualiza los elementos del DOM con los totales formateados.
     document.getElementById('total-subtotal').textContent = subtotal.toLocaleString('es-ES');
     document.getElementById('total-descuento').textContent = descuento.toLocaleString('es-ES');
     document.getElementById('total-final').textContent = totalFinal.toLocaleString('es-ES');
@@ -407,13 +379,12 @@ function actualizarResumenCarrito(carrito, subtotal) {
 }
 
 function adjuntarEventosCarritoView(contenedor) {
-    // Adjunta los listeners a los botones de aumentar, decrementar y eliminar fila completa.
     contenedor.querySelectorAll('.btn-aumentar').forEach(btn => {
         btn.addEventListener('click', () => {
             const id = btn.getAttribute('data-id');
             const productoData = obtenerProductoData(id);
             if (productoData) {
-                agregarAlCarrito(productoData); // Reutiliza agregarAlCarrito para aumentar.
+                agregarAlCarrito(productoData);
             }
         });
     });
@@ -422,7 +393,7 @@ function adjuntarEventosCarritoView(contenedor) {
         btn.addEventListener('click', () => {
             const id = btn.getAttribute('data-id');
             decrementarCantidad(id);
-            renderizarCarritoView(); // Vuelve a renderizar para reflejar el cambio o la eliminación.
+            renderizarCarritoView();
         });
     });
 
@@ -430,21 +401,22 @@ function adjuntarEventosCarritoView(contenedor) {
         btn.addEventListener('click', () => {
             const id = btn.getAttribute('data-id');
             eliminarProducto(id);
-            renderizarCarritoView(); // Vuelve a renderizar.
+            renderizarCarritoView();
         });
     });
 }
 
 function renderizarCarritoView() {
-    // Dibuja la tabla de productos del carrito y maneja el estado de vacío.
     const carrito = obtenerCarrito();
     const contenedor = document.getElementById('carrito-items-contenedor');
     const finalizarCompraBtn = document.getElementById('finalizarCompraBtn');
+    const cuponMensaje = document.getElementById('cupon-mensaje');
 
     if (!contenedor) return;
 
     if (carrito.length === 0) {
-        // Muestra mensaje de carrito vacío.
+        localStorage.removeItem('cuponAplicado'); // Se remueve el cupón si el carrito se vacía
+
         contenedor.innerHTML = `
             <tr>
                 <td colspan="6" class="text-center p-5">
@@ -452,13 +424,16 @@ function renderizarCarritoView() {
                 </td>
             </tr>
         `;
-        // Deshabilita el botón de compra final si no hay ítems.
         if (finalizarCompraBtn) finalizarCompraBtn.disabled = true;
         actualizarResumenCarrito(carrito, 0);
+        if (cuponMensaje) {
+             cuponMensaje.textContent = 'Ingresa tu cupón aquí.';
+             cuponMensaje.classList.remove('text-success', 'text-danger');
+             cuponMensaje.classList.add('text-muted');
+        }
         return;
     }
 
-    // Habilita el botón si hay ítems.
     if (finalizarCompraBtn) finalizarCompraBtn.disabled = false;
     let html = '';
     let subtotalGeneral = 0;
@@ -468,7 +443,6 @@ function renderizarCarritoView() {
         const subtotalProducto = precioUnitario * producto.cantidad;
         subtotalGeneral += subtotalProducto;
 
-        // Generación de cada fila de la tabla del carrito.
         html += `
             <tr data-id="${producto.id}">
                 <td><img src="${producto.imagen || '../assets/img/default-placeholder.jpg'}" class="img-thumbnail" style="width: 80px;" alt="${producto.nombre}"></td>
@@ -506,7 +480,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     const contenedorDestacados = document.getElementById(ID_CONTENEDOR_DESTACADOS);
     const contenedorAuriculares = document.getElementById(ID_CONTENEDOR_AURICULARES);
 
-    // Inicializa la vista de la página de inicio (con múltiples secciones) o de categorías (con una única sección).
     if (contenedorDestacados && contenedorAuriculares) {
         inicializarPagina('Ofertas', ID_CONTENEDOR_DESTACADOS);
         inicializarPagina('Auriculares', ID_CONTENEDOR_AURICULARES);
@@ -524,35 +497,29 @@ document.addEventListener('DOMContentLoaded', async () => {
     const formularioPago = document.getElementById('formulario-pago'); 
 
     if (carritoContenedor) {
-        // Si estamos en la página del carrito, inicializamos su vista y lógica.
         renderizarCarritoView();
         manejarCupones();
 
         if (formularioPago) {
-            // Adjunta el listener al envío del formulario.
             formularioPago.addEventListener('submit', function (e) {
                 e.preventDefault(); 
                 e.stopPropagation();
 
-                // Detiene la compra si el carrito está vacío.
                 if (obtenerCarrito().length === 0) {
                     alert("No puedes finalizar la compra con el carrito vacío.");
                     formularioPago.classList.remove('was-validated');
                     return;
                 }
                 
-                // checkValidity() usa los atributos HTML (required, pattern, min/maxlength) para validar.
                 if (formularioPago.checkValidity()) {
                     simularFinalizarCompra();
                     formularioPago.classList.remove('was-validated'); 
                 } else {
-                    // Si falla, agrega la clase para mostrar los mensajes de error de Bootstrap.
                     formularioPago.classList.add('was-validated');
                 }
             });
         }
     }
 
-    // Asegura que el contador se muestre en todas las páginas.
     actualizarContadorCarrito();
 });
