@@ -42,7 +42,7 @@ function mostrarToast(mensaje) {
     
     Toastify({
         text: "✅ " + mensaje,
-        duration: 3000,
+        duration: 1800,
         onClick: function(){ 
             // Determina la ruta correcta a Carrito.html (ajusta según la ubicación actual).
             const isRoot = !window.location.pathname.includes('/pages/');
@@ -86,7 +86,7 @@ function simularFinalizarCompra() {
         if (document.getElementById('carrito-items-contenedor')) {
             renderizarCarritoView(); 
         }
-        actualizarContadorCarrito(); 
+        actualizarContadorCarrito();    
 
         // Segunda pausa de 2 segundos antes de redirigir al inicio.
         setTimeout(() => {
