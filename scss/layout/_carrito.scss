@@ -1,0 +1,60 @@
+.carrito-table {
+    width: 100%;
+}
+
+.carrito-table td, .carrito-table th {
+    padding: 0.75rem !important;
+}
+
+.carrito-table th:nth-child(3),
+.carrito-table td:nth-child(3) {
+    width: 120px;
+    min-width: 120px;
+}
+
+.carrito-table th:nth-child(2),
+.carrito-table td:nth-child(2) {
+    width: 140px;
+    min-width: 140px;
+}
+
+.carrito-table th:nth-child(4),
+.carrito-table td:nth-child(4) {
+    width: 150px;
+    min-width: 150px;
+}
+
+.carrito-table th:nth-child(1),
+.carrito-table td:nth-child(1) {
+    width: auto;
+}
+
+.carrito-table img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.input-group.input-group-sm.justify-content-center {
+    flex-wrap: nowrap;
+}
+
+@media (min-width: 992px) {
+    .col-lg-8 {
+        display: flex;
+        justify-content: flex-start;
+    }
+}
+
+.col-lg-8 .card {
+    width: auto;
+    max-width: 100%;
+    width: fit-content;
+    display: inline-block;
+}
+
+@media (max-width: 991px) {
+    .col-lg-8 .card {
+        width: 100%;
+    }
+}

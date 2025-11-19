@@ -1,11 +1,149 @@
-.py-5{
-    background-color: $bg-footer;
-    padding: 0.625rem;
-    color: $color-font-footer;
-    a{
-        color: $color-font-footer;
-        &:hover{
-            color: $color-boton;
-        }
+.jbl-footer {
+    background-color: #121212; /* Fondo negro o gris muy oscuro */
+    color: #f0f0f0; /* Color de texto claro */
+    padding: 40px 20px 10px; /* Padding superior, lateral e inferior */
+    font-family: Arial, sans-serif;
+}
+
+/* Contenedor Principal (para las 4 columnas) */
+.jbl-footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto 30px;
+    flex-wrap: wrap; /* Permite que las columnas se apilen en móviles */
+    gap: 20px;
+}
+
+/* Estilo de cada columna */
+.footer-column {
+    width: 20%; /* Opcional: Ajustar ancho si no usa grid/flex avanzado */
+    min-width: 180px; /* Ancho mínimo para evitar que se aplasten */
+}
+
+.footer-column h3 {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ff6600; /* Un toque de naranja/color de acento de JBL */
+}
+
+/* Estilos de las listas de enlaces */
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 8px;
+}
+
+.footer-column a {
+    color: #cccccc; /* Un gris más suave para los enlaces */
+    text-decoration: none;
+    font-size: 0.95em;
+    transition: color 0.3s;
+}
+
+.footer-column a:hover {
+    color: #ff9900; /* Efecto hover con color de acento */
+}
+
+/* Estilos de la Suscripción (Columna CTA) */
+.footer-cta {
+    display: flex;
+    flex-direction: column;
+}
+
+.subscription-form {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.subscription-form input {
+    padding: 10px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+    flex-grow: 1;
+}
+
+.subscription-form button {
+    background-color: #ff6600; /* Color de acento de JBL */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.subscription-form button:hover {
+    background-color: #ff9900;
+}
+
+/* Estilos de Redes Sociales */
+.social-links a {
+    margin-right: 15px;
+    font-size: 0.9em;
+}
+.social-links i {
+    /* Aquí se configurarían los íconos de Font Awesome */
+    margin-right: 5px;
+}
+
+
+/* Barra Inferior (Legal y Copyright) */
+.jbl-footer-bottom {
+    border-top: 1px solid #333333; /* Línea divisoria sutil */
+    padding-top: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 0.8em;
+}
+
+.jbl-footer-bottom a {
+    color: #888888; /* Color de texto muy sutil para enlaces legales */
+    text-decoration: none;
+    margin-left: 15px;
+    transition: color 0.3s;
+}
+
+.jbl-footer-bottom a:hover {
+    color: #cccccc;
+}
+
+.legal-links {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Media Query para Responsividad (Móviles) */
+@media (max-width: 768px) {
+    .jbl-footer-content {
+        flex-direction: column; /* Apila las columnas */
+    }
+
+    .footer-column {
+        width: 100%; /* Ocupa todo el ancho */
+        margin-bottom: 20px;
+    }
+    
+    .jbl-footer-bottom {
+        flex-direction: column; /* Apila el copyright y los enlaces */
+        text-align: center;
+    }
+
+    .copyright {
+        margin-bottom: 10px;
+    }
+
+    .legal-links {
+        justify-content: center;
+        gap: 5px;
     }
 }
