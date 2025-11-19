@@ -1,13 +1,13 @@
 @mixin productos {
+    
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.625rem;
+    justify-content: flex-start;
 }
 
 @mixin tarjeta {
-    width: 17.5rem;
+    width: 16rem;
     height: 28.125rem;
     margin: 0.625rem;
     display: flex;
