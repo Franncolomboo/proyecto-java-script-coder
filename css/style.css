@@ -266,26 +266,21 @@ body {
   }
 }
 .section-destacados {
-  justify-items: center;
-  justify-content: center;
   text-align: center;
   margin-bottom: 2rem;
 }
 
 .section-auriculares {
-  justify-items: center;
-  justify-content: center;
   text-align: center;
   margin-bottom: 2rem;
 }
 
 .section-products {
-  max-width: 1600px;
-  margin: auto;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  gap: 0.625rem;
 }
 
 .shop-container {
@@ -308,7 +303,7 @@ body {
 }
 
 .card-jbl {
-  width: 16rem;
+  width: 17.5rem;
   height: 28.125rem;
   margin: 0.625rem;
   display: flex;
