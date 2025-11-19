@@ -1,9 +1,9 @@
 @mixin productos {
-    
+    margin: auto;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 @mixin tarjeta {
@@ -30,6 +30,7 @@
 }
 
 @mixin secciones {
+    justify-items: center;
     justify-content: center;
     text-align: center;
     margin-bottom: 2rem;

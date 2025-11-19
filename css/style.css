@@ -266,22 +266,25 @@ body {
   }
 }
 .section-destacados {
+  justify-items: center;
   justify-content: center;
   text-align: center;
   margin-bottom: 2rem;
 }
 
 .section-auriculares {
+  justify-items: center;
   justify-content: center;
   text-align: center;
   margin-bottom: 2rem;
 }
 
 .section-products {
+  margin: auto;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .shop-container {
