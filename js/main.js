@@ -61,12 +61,94 @@ function mostrarToastExito(mensaje) {
 }
 
 // ----------------------------------------------------
-// LÓGICA DE COMPRA Y REDIRECCIÓN
+// LÓGICA DE COMPRA Y RECIBO FICTICIO (MODIFICADA)
 // ----------------------------------------------------
 
-function simularFinalizarCompra() {
-    mostrarToastExito("¡Compra realizada con éxito! Procesando pedido...");
+function generarReciboHTML(datosFacturacion, carrito, subtotal, descuento, totalFinal) {
+    const ahora = new Date().toLocaleString('es-ES', { dateStyle: 'long', timeStyle: 'short' });
+    const email = datosFacturacion.correo || 'N/A';
+    const dni = datosFacturacion.dni || 'N/A';
+    
+    // Generación de la tabla de productos
+    const productosHTML = carrito.map(item => `
+        <tr>
+            <td style="border: 1px solid #ccc; padding: 8px;">${item.nombre}</td>
+            <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">${item.cantidad}</td>
+            <td style="border: 1px solid #ccc; padding: 8px; text-align: right;">$${item.precio.toLocaleString('es-ES')}</td>
+            <td style="border: 1px solid #ccc; padding: 8px; text-align: right;">$${(item.cantidad * item.precio).toLocaleString('es-ES')}</td>
+        </tr>
+    `).join('');
 
+    // Estilo básico para simular un correo simple y legible
+    return `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #ddd; padding: 20px;">
+            <h2 style="color: #007bff;">¡Gracias por tu compra! (Recibo Ficticio)</h2>
+            <p><strong>Fecha:</strong> ${ahora}</p>
+            <p><strong>Recibo N°:</strong> ${Math.floor(Math.random() * 900000) + 100000}</p>
+            
+            <h3 style="color: #333; border-bottom: 1px solid #eee; padding-bottom: 5px;">Datos de Facturación</h3>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>DNI/CUIT:</strong> ${dni}</p>
+            <p><strong>CVC:</strong> XXXX</p>
+
+            <h3 style="color: #333; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">Detalles de la Compra</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                <thead>
+                    <tr style="background-color: #f8f8f8;">
+                        <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Producto</th>
+                        <th style="border: 1px solid #ccc; padding: 8px; text-align: center;">Cant.</th>
+                        <th style="border: 1px solid #ccc; padding: 8px; text-align: right;">P. Unitario</th>
+                        <th style="border: 1px solid #ccc; padding: 8px; text-align: right;">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${productosHTML}
+                </tbody>
+            </table>
+
+            <h3 style="color: #333; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 20px;">Resumen de Pago</h3>
+            <div style="text-align: right;">
+                <p>Subtotal: <strong>$${subtotal.toLocaleString('es-ES')}</strong></p>
+                <p style="color: red;">Descuento aplicado: <strong>-$${descuento.toLocaleString('es-ES')}</strong></p>
+                <p style="font-size: 1.2em; border-top: 1px solid #333; padding-top: 5px;">Total Final: <strong style="color: #007bff;">$${totalFinal.toLocaleString('es-ES')}</strong></p>
+            </div>
+
+            <p style="margin-top: 30px; text-align: center; color: #666;">Este es un recibo de compra simulado.</p>
+        </div>
+    `;
+}
+
+function simularFinalizarCompra(datosFacturacion) {
+    const carrito = obtenerCarrito();
+
+    // Calcular totales para el recibo (lógica duplicada de actualizarResumenCarrito para consistencia)
+    const subtotalGeneral = carrito.reduce((sum, item) => sum + (item.precio * item.cantidad), 0);
+    const cuponAplicado = localStorage.getItem('cuponAplicado');
+    let descuento = 0;
+
+    if (cuponAplicado === 'JBLFRAN') {
+        descuento = subtotalGeneral * 0.20;
+    } else if (cuponAplicado === 'JBL10') {
+        descuento = subtotalGeneral * 0.10;
+    }
+    const totalFinal = subtotalGeneral - descuento;
+    
+    // 1. Generar y mostrar el recibo (Simulación de envío de email)
+    const reciboHTML = generarReciboHTML(datosFacturacion, carrito, subtotalGeneral, descuento, totalFinal);
+    
+    // Abre una nueva ventana/pestaña para mostrar el recibo de manera legible
+    const ventanaRecibo = window.open('', 'ReciboFicticio', 'width=800,height=700,scrollbars=yes');
+    if (ventanaRecibo) {
+        ventanaRecibo.document.write(reciboHTML);
+        ventanaRecibo.document.close();
+        ventanaRecibo.focus();
+    }
+
+
+    // 2. Notificación de éxito
+    mostrarToastExito("🎉 ¡Compra realizada con éxito! Recibo ficticio generado.");
+
+    // 3. Limpiar y redirigir
     setTimeout(() => {
         localStorage.removeItem(CARRITO_STORAGE_KEY);
         localStorage.removeItem('cuponAplicado'); // Limpia el cupón aplicado al finalizar
@@ -74,7 +156,7 @@ function simularFinalizarCompra() {
         if (document.getElementById('carrito-items-contenedor')) {
             renderizarCarritoView(); 
         }
-        actualizarContadorCarrito();    
+        actualizarContadorCarrito();    
 
         setTimeout(() => {
             window.location.href = '../index.html'; 
@@ -320,7 +402,7 @@ async function inicializarPagina(categoria, contenedorId) {
 }
 
 // ----------------------------------------------------
-// LÓGICA DE CUPONES Y RESUMEN DEL CARRITO (MODIFICADAS)
+// LÓGICA DE CUPONES Y RESUMEN DEL CARRITO
 // ----------------------------------------------------
 
 function manejarCupones() {
@@ -358,7 +440,7 @@ function actualizarResumenCarrito(carrito, subtotal) {
     let descuento = 0;
     let descuentoPorcentaje = 0;
 
-    if (cuponAplicado === 'JBL20') {
+    if (cuponAplicado === 'JBLFRAN') {
         descuentoPorcentaje = 20;
         descuento = subtotal * 0.20;
     } else if (cuponAplicado === 'JBL10') {
@@ -512,7 +594,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
                 
                 if (formularioPago.checkValidity()) {
-                    simularFinalizarCompra();
+                    // Extraer los datos del formulario antes de simular la compra
+                    const datosFacturacion = {
+                        cvc: document.getElementById('cvc').value,
+                        dni: document.getElementById('titularDNI').value,
+                        correo: document.getElementById('correo').value
+                    };
+                    
+                    simularFinalizarCompra(datosFacturacion);
                     formularioPago.classList.remove('was-validated'); 
                 } else {
                     formularioPago.classList.add('was-validated');

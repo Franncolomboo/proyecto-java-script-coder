@@ -125,10 +125,17 @@
         <label for="titularDNI" class="form-label">DNI / CUIT del Titular</label>
         <input type="text" class="form-control" id="titularDNI" required 
                placeholder="Documento de Identidad o CUIT" 
-               maxlength="15">
-        <div class="invalid-feedback">Ingrese el DNI/CUIT del titular.</div>
+               maxlength="15"
+               pattern="[0-9]{7,15}">
+        <div class="invalid-feedback">Ingrese un DNI/CUIT valido .</div>
     </div>
-    
+    <div class="mb-3">
+        <label for="correo" class="form-label">Correo Electrónico</label>
+        <input type="email" class="form-control" id="correo" required 
+               placeholder="correo@ejemplo.com" 
+               maxlength="100">
+        <div class="invalid-feedback">Ingrese un correo electrónico válido.</div>
+    </div>
     <button class="btn btn-success btn-lg w-100 mt-4" type="submit" id="finalizarCompraBtn">
         Finalizar Compra
     </button>
